@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -118,4 +118,117 @@
     });
   </script>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>День рождения Демира 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #FF073A, #1F51FF);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      text-shadow: 0 0 15px #39ff14;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    .btn {
+      margin-top: 30px;
+      background: #39ff14;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: 0.3s;
+      box-shadow: 0 0 20px #39ff14;
+      cursor: pointer;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #66ff66;
+    }
+    #startOverlay {
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.85);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      color:#39ff14;
+      font-family:'Poppins',sans-serif;
+      font-size:2rem;
+      text-shadow:0 0 20px #39ff14;
+      cursor:pointer;
+      z-index:9999;
+    }
+  </style>
+</head>
+<body>
+  <div id="startOverlay">Нажми, чтобы начать 🎧<div style="margin-top:20px; font-size:1.2rem;">и запустить музыку</div></div>
+
+  <h1>🎉 День рождения Демира 🎉</h1>
+  <p>24 декабря 2025 — после уроков</p>
+  <p>📍 Portmall</p>
+  <p>Будет весело, не пропусти!</p>
+  <button class="btn" id="rsvpBtn">Я приду 💬</button>
+
+  <audio id="bgMusic" loop style="display:none;" preload="auto">
+    <source src="https://mn1.sunproxy.net/file/NFFnYm5GQTBYNlM1cG54di92TXVMWExKczFpcVEyeVBpWCtmSE9tU3FxbzJZT0pJZmlESkVlcHVOSEtaZitFYW1ZeWY2VGxKRGZCQkxoVGZOZ0tPZW5oUXM3Q0YwanVkaGViNmhXeEg0bDA9/Gindul_Matei_-_La_Ciocana_(mp3.mn).mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const overlay = document.getElementById('startOverlay');
+    const btn = document.getElementById('rsvpBtn');
+
+    overlay.addEventListener('click', () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 600);
+      audio.currentTime = 38;
+      audio.muted = false;
+      audio.play().catch(()=>{ console.log('Автозапуск заблокирован, нажмите ещё раз'); });
+    });
+
+    btn.addEventListener('click', () => {
+      // Отправка сообщения через Viber
+      window.open('viber://chat?number=+37367133111&text=Я%20прию', '_blank');
+      // Изменяем текст кнопки на сайте
+      btn.textContent = 'Молодец, жду!';
+      btn.disabled = true;
+      // Через 30 секунд выключаем музыку
+      setTimeout(() => {
+        audio.pause();
+      }, 30000);
+    });
+  </script>
+</body>
 </html>
+
