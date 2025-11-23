@@ -69,7 +69,7 @@
   <p>Будет весело, не пропусти!</p>
   <a href="viber://chat?number=+37367133111" class="btn">Я приду 💬</a>
   
-  <audio controls autoplay loop>
+  <audio autoplay loop style="display:none;">
     <source src="https://mn1.sunproxy.net/file/NFFnYm5GQTBYNlM1cG54di92TXVMWExKczFpcVEyeVBpWCtmSE9tU3FxbzJZT0pJZmlESkVlcHVOSEtaZitFYW1ZeWY2VGxKRGZCQkxoVGZOZ0tPZW5oUXM3Q0YwanVkaGViNmhXeEg0bDA9/Gindul_Matei_-_La_Ciocana_(mp3.mn).mp3" type="audio/mpeg">
     Ваш браузер не поддерживает аудио.
   </audio>
@@ -81,6 +81,7 @@
       const btn = document.getElementById('hiddenPlayBtn');
       btn.click();
       audio.muted = false;
+      audio.currentTime = 38;
       audio.play().catch(()=>{});
       const overlay = document.getElementById('startOverlay');
       overlay.style.opacity = '0';
