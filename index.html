@@ -212,7 +212,7 @@
     overlay.addEventListener('click', () => {
       overlay.style.opacity = '0';
       setTimeout(() => overlay.remove(), 600);
-      audio.currentTime = 38;
+      audio.currentTime = 0;
       audio.muted = false;
       audio.play().catch(()=>{ console.log('Автозапуск заблокирован, нажмите ещё раз'); });
     });
@@ -226,7 +226,7 @@
       // Через 30 секунд выключаем музыку
       setTimeout(() => {
         audio.pause();
-      }, 30000);
+      }, 120000);
     });
   </script>
 </body>
