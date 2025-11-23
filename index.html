@@ -58,6 +58,11 @@
   </style>
 </head>
 <body>
+  <div id="startOverlay"
+       onclick="startMusic()" style="position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#39ff14; font-family:'Poppins',sans-serif; font-size:2rem; text-shadow:0 0 20px #39ff14; cursor:pointer; z-index:9999;">
+    Нажми, чтобы начать 🎧
+    <div style="margin-top:20px; font-size:1.2rem;">и запустить музыку</div>
+  </div>
   <h1>🎉 День рождения Демира 🎉</h1>
   <p>24 декабря 2025 — после уроков</p>
   <p>📍 Portmall</p>
@@ -68,5 +73,48 @@
     <source src="https://mn1.sunproxy.net/file/NFFnYm5GQTBYNlM1cG54di92TXVMWExKczFpcVEyeVBpWCtmSE9tU3FxbzJZT0pJZmlESkVlcHVOSEtaZitFYW1ZeWY2VGxKRGZCQkxoVGZOZ0tPZW5oUXM3Q0YwanVkaGViNmhXeEg0bDA9/Gindul_Matei_-_La_Ciocana_(mp3.mn).mp3" type="audio/mpeg">
     Ваш браузер не поддерживает аудио.
   </audio>
+
+  <button id="hiddenPlayBtn" style="opacity:0; position:absolute; pointer-events:none;">play</button>
+  <script>
+    function startMusic(){
+      const audio = document.querySelector('audio');
+      const btn = document.getElementById('hiddenPlayBtn');
+      btn.click();
+      audio.muted = false;
+      audio.play().catch(()=>{});
+      const overlay = document.getElementById('startOverlay');
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 600);
+    }
+
+    window.addEventListener('load', () => {
+      const audio = document.querySelector('audio');
+      // Попытка автозапуска
+      const playAudio = () => {
+        audio.muted = false;
+        audio.play().catch(() => {});
+      };
+      // Запуск после клика по стартовой заставке
+      const overlay = document.getElementById('startOverlay');
+      overlay.addEventListener('click', () => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.load();
+        audio.muted = false;
+        audio.play().catch(()=>{});
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 600);
+      });('click', () => {
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 600);
+        playAudio();
+      });
+
+      // Сразу пробуем
+      playAudio();
+      // Если браузер блокирует — запускаем после первого клика
+      document.body.addEventListener('click', playAudio, { once: true });
+    });
+  </script>
 </body>
 </html>
